@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation as Serializer;
  * Environment
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppChangeBundle\Entity\Repository\EnvironmentRepository")
  */
 class Environment
 {
