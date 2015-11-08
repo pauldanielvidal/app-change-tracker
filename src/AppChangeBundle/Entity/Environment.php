@@ -127,5 +127,9 @@ class Environment
     {
         return $this->sortOrder;
     }
+
+    public function __toString() {
+        return $this->name;
+    }
 }
 
