@@ -22,12 +22,24 @@ class Application
      */
     private $id;
 
+
     /**
      * @ORM\OneToOne(targetEntity="ServiceNowConfig", mappedBy="application", orphanRemoval=true, cascade={"persist", "remove", "merge"})
      * @Serializer\Exclude
      */
     private $servicenow_config;
 
+    /**
+     * @ORM\OneToMany(targetEntity="ApplicationURL", mappedBy="application", orphanRemoval=true, cascade={"persist", "remove", "merge"})
+     * @Serializer\Exclude
+     */
+    private $application_urls;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ChangeLog", mappedBy="application", orphanRemoval=true, cascade={"persist", "remove", "merge"})
+     * @Serializer\Exclude
+     */
+    private $changelogs;
 
     /**
      * @var string
@@ -45,6 +57,36 @@ class Application
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get list of changelogs
+     *
+     * @return array()
+     */
+    public function getChangeLogs()
+    {
+        return $this->changelogs;
+    }
+
+    /**
+     * Get list of ApplicationURLs
+     *
+     * @return array()
+     */
+    public function getApplicationURLs()
+    {
+        return $this->application_urls;
+    }
+
+    /**
+     * Get ServiceNow config
+     *
+     * @return array()
+     */
+    public function getServicenowConfig()
+    {
+        return $this->servicenow_config;
     }
 
     /**

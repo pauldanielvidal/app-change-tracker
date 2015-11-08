@@ -25,7 +25,7 @@ class ServiceNowConfig
      * @ORM\OneToOne(targetEntity="Application", inversedBy="ServiceNowConfig")
      * @ORM\JoinColumn(name="application_id", referencedColumnName="id", nullable=false)
      */
-    private $course;
+    private $application;
 
     /**
      * @var string
@@ -64,6 +64,30 @@ class ServiceNowConfig
     public function getId()
     {
         return $this->id;
+    }
+
+
+    /**
+     * Set application
+     *
+     * @param integer $application
+     * @return ServiceNowConfig
+     */
+    public function setApplication($application)
+    {
+        $this->application = $application;
+
+        return $this;
+    }
+
+    /**
+     * Get application
+     *
+     * @return integer
+     */
+    public function getApplication()
+    {
+        return $this->application;
     }
 
     /**

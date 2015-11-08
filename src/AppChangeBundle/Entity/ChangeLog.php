@@ -22,18 +22,22 @@ class ChangeLog
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="application_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Status", inversedBy="ChangeLog")
+     * @ORM\JoinColumn(name="status_id", referencedColumnName="id", nullable=false)
      */
-    private $applicationId;
+    private $status;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="environment_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Application", inversedBy="ChangeLog")
+     * @ORM\JoinColumn(name="application_id", referencedColumnName="id", nullable=false)
      */
-    private $environmentId;
+    private $application;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Environment", inversedBy="ChangeLog")
+     * @ORM\JoinColumn(name="environment_id", referencedColumnName="id", nullable=false)
+     */
+    private $environment;
 
     /**
      * @var string
@@ -64,13 +68,6 @@ class ChangeLog
     private $dateOfDeployment;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="status_id", type="integer")
-     */
-    private $statusId;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="comments", type="text")
@@ -96,51 +93,72 @@ class ChangeLog
     }
 
     /**
-     * Set applicationId
+     * Set status
      *
-     * @param integer $applicationId
-     *
-     * @return ChangeLog
+     * @param integer $status
+     * @return Status
      */
-    public function setApplicationId($applicationId)
+    public function setStatus($status)
     {
-        $this->applicationId = $applicationId;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get applicationId
+     * Get status
      *
      * @return integer
      */
-    public function getApplicationId()
+    public function getStatus()
     {
-        return $this->applicationId;
+        return $this->status;
     }
 
     /**
-     * Set environmentId
+     * Set application
      *
-     * @param integer $environmentId
-     *
-     * @return ChangeLog
+     * @param integer $application
+     * @return Application
      */
-    public function setEnvironmentId($environmentId)
+    public function setApplication($application)
     {
-        $this->environmentId = $environmentId;
+        $this->application = $application;
 
         return $this;
     }
 
     /**
-     * Get environmentId
+     * Get application
      *
      * @return integer
      */
-    public function getEnvironmentId()
+    public function getApplication()
     {
-        return $this->environmentId;
+        return $this->application;
+    }
+
+    /**
+     * Set environment
+     *
+     * @param integer $environment
+     * @return Environment
+     */
+    public function setEnvironment($environment)
+    {
+        $this->environment = environment;
+
+        return $this;
+    }
+
+    /**
+     * Get environment
+     *
+     * @return integer
+     */
+    public function getEnvironment()
+    {
+        return $this->environment;
     }
 
     /**
@@ -237,30 +255,6 @@ class ChangeLog
     public function getDateOfDeployment()
     {
         return $this->dateOfDeployment;
-    }
-
-    /**
-     * Set statusId
-     *
-     * @param integer $statusId
-     *
-     * @return ChangeLog
-     */
-    public function setStatusId($statusId)
-    {
-        $this->statusId = $statusId;
-
-        return $this;
-    }
-
-    /**
-     * Get statusId
-     *
-     * @return integer
-     */
-    public function getStatusId()
-    {
-        return $this->statusId;
     }
 
     /**

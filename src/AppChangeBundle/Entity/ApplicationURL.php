@@ -22,18 +22,16 @@ class ApplicationURL
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="application_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Environment", inversedBy="ApplicationURL")
+     * @ORM\JoinColumn(name="environment_id", referencedColumnName="id", nullable=false)
      */
-    private $applicationId;
+    private $environment;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="environment_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Application", inversedBy="ApplicationURL")
+     * @ORM\JoinColumn(name="application_id", referencedColumnName="id", nullable=false)
      */
-    private $environmentId;
+    private $application;
 
     /**
      * @var string
@@ -54,51 +52,49 @@ class ApplicationURL
     }
 
     /**
-     * Set applicationId
+     * Set application
      *
-     * @param integer $applicationId
-     *
-     * @return ApplicationURL
+     * @param integer $application
+     * @return Application
      */
-    public function setApplicationId($applicationId)
+    public function setApplication($application)
     {
-        $this->applicationId = $applicationId;
+        $this->application = $application;
 
         return $this;
     }
 
     /**
-     * Get applicationId
+     * Get application
      *
      * @return integer
      */
-    public function getApplicationId()
+    public function getApplication()
     {
-        return $this->applicationId;
+        return $this->application;
     }
 
     /**
-     * Set environmentId
+     * Set environment
      *
-     * @param integer $environmentId
-     *
-     * @return ApplicationURL
+     * @param integer $environment
+     * @return Environment
      */
-    public function setEnvironmentId($environmentId)
+    public function setEnvironment($environment)
     {
-        $this->environmentId = $environmentId;
+        $this->environment = $environment;
 
         return $this;
     }
 
     /**
-     * Get environmentId
+     * Get environment
      *
      * @return integer
      */
-    public function getEnvironmentId()
+    public function getEnvironment()
     {
-        return $this->environmentId;
+        return $this->environment;
     }
 
     /**

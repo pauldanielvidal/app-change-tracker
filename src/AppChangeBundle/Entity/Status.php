@@ -3,6 +3,9 @@
 namespace AppChangeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+
+
 
 /**
  * Status
@@ -20,6 +23,12 @@ class Status
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ChangeLog", mappedBy="status", orphanRemoval=true, cascade={"persist", "remove", "merge"})
+     * @Serializer\Exclude
+     */
+    private $changelogs;
 
     /**
      * @var string
@@ -44,6 +53,16 @@ class Status
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get list of changelogs
+     *
+     * @return array()
+     */
+    public function getChangeLogs()
+    {
+        return $this->changelogs;
     }
 
     /**
