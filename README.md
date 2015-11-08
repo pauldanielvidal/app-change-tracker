@@ -1,2 +1,4 @@
-# app-change-tracker
-Simple Symfony2 project to be used a change log or tracker for applications
+app-change-tracker
+==================
+
+A Symfony project created on November 8, 2015, 4:55 am.
