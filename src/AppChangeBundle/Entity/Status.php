@@ -45,6 +45,11 @@ class Status
     private $sortOrder;
 
 
+    public function __toString() {
+        return $this->description;
+    }
+
+
     /**
      * Get id
      *
