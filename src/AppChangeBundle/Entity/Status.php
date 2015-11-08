@@ -11,7 +11,7 @@ use JMS\Serializer\Annotation as Serializer;
  * Status
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppChangeBundle\Entity\Repository\StatusRepository")
  */
 class Status
 {
