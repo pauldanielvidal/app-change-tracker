@@ -50,6 +50,11 @@ class Environment
     private $sortOrder;
 
 
+    public function __toString() {
+        return $this->name;
+    }
+
+
     /**
      * Get id
      *
@@ -126,10 +131,6 @@ class Environment
     public function getSortOrder()
     {
         return $this->sortOrder;
-    }
-
-    public function __toString() {
-        return $this->name;
     }
 }
 

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ServiceNowConfig
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity()
  */
 class ServiceNowConfig
 {
@@ -22,7 +22,7 @@ class ServiceNowConfig
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="Application", inversedBy="ServiceNowConfig")
+     * @ORM\OneToOne(targetEntity="Application")
      * @ORM\JoinColumn(name="application_id", referencedColumnName="id", nullable=false)
      */
     private $application;
@@ -54,6 +54,17 @@ class ServiceNowConfig
      * @ORM\Column(name="configuration_item", type="string", length=255)
      */
     private $configurationItem;
+
+
+    public function __toString() {
+        /*return json_encode(
+            array(
+                "Business Service" => $this->businessService,
+                "Configuration Item" => $this->configurationItem,
+            )
+        );*/
+        return $this->configurationItem;
+    }
 
 
     /**

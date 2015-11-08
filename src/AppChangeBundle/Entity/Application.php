@@ -49,6 +49,11 @@ class Application
     private $name;
 
 
+    public function __toString() {
+        return $this->name;
+    }
+
+
     /**
      * Get id
      *
@@ -110,10 +115,6 @@ class Application
      */
     public function getName()
     {
-        return $this->name;
-    }
-
-    public function __toString() {
         return $this->name;
     }
 }

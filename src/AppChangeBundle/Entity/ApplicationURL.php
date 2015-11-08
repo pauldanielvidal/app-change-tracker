@@ -71,7 +71,7 @@ class ApplicationURL
      */
     public function getApplication()
     {
-        return $this->environment;
+        return $this->application;
     }
 
     /**

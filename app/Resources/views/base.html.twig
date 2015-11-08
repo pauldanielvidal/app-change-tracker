@@ -5,6 +5,12 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <style>
+            .records_list td, th {
+                border: 1px solid black;
+            }
+        </style>
     </head>
     <body>
         {% block body %}{% endblock %}
