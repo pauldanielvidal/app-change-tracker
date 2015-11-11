@@ -77,7 +77,7 @@ class ChangeLog
     /**
      * @var string
      *
-     * @ORM\Column(name="servicenow_ticket_ref", type="string", length=255)
+     * @ORM\Column(name="servicenow_ticket_ref", type="string", length=255, nullable=true)
      */
     private $servicenowTicketRef;
 
@@ -146,7 +146,7 @@ class ChangeLog
      */
     public function setEnvironment($environment)
     {
-        $this->environment = environment;
+        $this->environment = $environment;
 
         return $this;
     }
