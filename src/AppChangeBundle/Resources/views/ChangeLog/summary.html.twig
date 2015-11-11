@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>ChangeLog list</h1>
+
+    <table class="records_list" width="100%">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                {% for env in environments %}
+                    <th width="100px">{{ env.name }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for app in applications %}
+            <tr>
+                <td>{{ app.name }}</td>
+
+                {% for env in environments %}
+                    <td>{{ obj[app.name][env.name] }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('changelog') }}">
+                back to Change Logs
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

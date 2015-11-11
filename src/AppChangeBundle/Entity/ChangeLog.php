@@ -304,5 +304,21 @@ class ChangeLog
     {
         return $this->servicenowTicketRef;
     }
+
+    public function toArray()
+    {
+        return array(
+            'id' => $this->id,
+            'status' => $this->status->__toString(),
+            'application' => $this->application->__toString(),
+            'environment' => $this->environment->__toString(),
+            'description' => $this->description,
+            'version' => $this->version,
+            'dateEntered' => $this->dateEntered,
+            'dateOfDeployment' => $this->dateOfDeployment,
+            'comments' => $this->comments,
+            'servicenowTicketRef' => $this->servicenowTicketRef,
+        );
+    }
 }
 

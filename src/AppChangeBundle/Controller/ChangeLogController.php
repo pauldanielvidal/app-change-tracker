@@ -17,7 +17,59 @@ use AppChangeBundle\Form\ChangeLogType;
  */
 class ChangeLogController extends Controller
 {
+    /**
+     * Displays a summary page of the change logs
+     *
+     * @Route("/summary", name="changelog_summary")
+     * @Method("GET")
+     * @Template()
+     */
+    public function summaryAction()
+    {
+        $em = $this->getDoctrine()->getManager();
 
+        $applications = $em->getRepository('AppChangeBundle:Application')->findAll();
+        $environment = $em->getRepository('AppChangeBundle:Environment')->findAll();
+
+        $obj = array();
+
+        foreach( $applications as $app ) {
+
+            foreach( $environment as $env ) {
+
+                $latest = $em->getRepository('AppChangeBundle:ChangeLog')->findBy(
+                    array(
+                        'status' => $em->getRepository('AppChangeBundle:Status')->findBy(
+                            array('description'=>'Completed')
+                        ),
+                        'application' => $app->getId(),
+                        'environment' => $env->getId(),
+                    ),
+                    array(
+                        'application'=>'desc',
+                        'dateOfDeployment'=>'desc',
+                    )
+                    ,1
+                );
+
+                if( count($latest) > 0 ) {
+                    $obj[ $app->getName() ][ $env->getName() ] = $latest[0]->toArray()['version'];
+                } else {
+                    $obj[ $app->getName() ][ $env->getName() ] = "";
+                }
+            }
+        }
+
+            /*printf("<pre>");
+            print_r($obj);
+            printf("</pre>");*/
+
+        return array(
+            'obj' => $obj,
+            'applications' => $applications,
+            'environments' => $environment,
+        );
+    }
     /**
      * Lists all ChangeLog entities.
      *

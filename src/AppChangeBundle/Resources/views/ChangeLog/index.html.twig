@@ -6,26 +6,28 @@
     <table class="records_list">
         <thead>
             <tr>
+                <th>Servicenowticketref</th>
                 <th>Id</th>
                 <th>Description</th>
                 <th>Version</th>
                 <th>Dateentered</th>
                 <th>Dateofdeployment</th>
+                <th>Status</th>
                 <th>Comments</th>
-                <th>Servicenowticketref</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
+                <td>{{ entity.servicenowTicketRef }}</td>
                 <td><a href="{{ path('changelog_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.description }}</td>
                 <td>{{ entity.version }}</td>
                 <td>{{ entity.dateEntered|date('Y-m-d H:i:s') }}</td>
                 <td>{{ entity.dateOfDeployment|date('Y-m-d H:i:s') }}</td>
+                <td>{{ entity.status }}</td>
                 <td>{{ entity.comments }}</td>
-                <td>{{ entity.servicenowTicketRef }}</td>
                 <td>
                 <ul>
                     <li>
@@ -41,10 +43,15 @@
         </tbody>
     </table>
 
-        <ul>
+    <ul>
         <li>
             <a href="{{ path('changelog_new') }}">
                 Create a new entry
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('changelog_summary') }}">
+                Change Log Summary
             </a>
         </li>
     </ul>
