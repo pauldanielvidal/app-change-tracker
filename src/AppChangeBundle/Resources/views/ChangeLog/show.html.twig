@@ -19,11 +19,11 @@
             </tr>
             <tr>
                 <th>Dateentered</th>
-                <td>{{ entity.dateEntered }}</td>
+                <td>{{ entity.dateEntered|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
                 <th>Dateofdeployment</th>
-                <td>{{ entity.dateOfDeployment }}</td>
+                <td>{{ entity.dateOfDeployment|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
                 <th>Comments</th>
